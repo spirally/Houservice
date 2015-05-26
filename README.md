@@ -1,7 +1,6 @@
 ## Houservice
 
-Houservice is a base Extra template that is useful when wanting to create a new
-Extra for MODx Revolution. One can git archive from this repository to start
+Houservice is a component for MODx Revolution. One can git archive from this repository to start
 with all the file structure for beginning MODx Extra development pre-setup.
 
 ## How to Export
