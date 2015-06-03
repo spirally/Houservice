@@ -11,7 +11,11 @@ if ($object->xpdo) {
 
 			$manager = $modx->getManager();
 			$objects = array(
-				'HouserviceItem',
+				'hsCalculation',
+				'hsService',
+				'hsReadout',
+				'hsMeter',
+				'hsMeterType',
 			);
 			foreach ($objects as $tmp) {
 				$manager->createObjectContainer($tmp);

@@ -2,17 +2,86 @@
 <model package="houservice" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="houservice"
 	   version="1.1">
 
-	<object class="HouserviceItem" table="houservice_items" extends="xPDOSimpleObject">
-		<field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
-		<field key="description" dbtype="text" phptype="text" null="true" default=""/>
-		<field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
+    <object class="hsCalculation" table="houservice_calculation" extends="xPDOSimpleObject">
+        <field key="user_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="period" dbtype="date" phptype="date" null="true" />
+        <field key="sum" dbtype="decimal" precision="12,2" phptype="float" null="true" default="0" />
 
-		<index alias="name" name="name" primary="false" unique="false" type="BTREE">
-			<column key="name" length="" collation="A" null="false"/>
-		</index>
-		<index alias="active" name="active" primary="false" unique="false" type="BTREE">
-			<column key="active" length="" collation="A" null="false"/>
-		</index>
-	</object>
+        <index alias="key" name="key" primary="false" unique="true" type="BTREE">
+            <column key="user_id" length="" collation="A" null="false" />
+            <column key="period" length="" collation="A" null="false" />
+        </index>
+
+        <composite alias="Service" class="hsService" local="id" foreign="calculation_id" cardinality="many" owner="local" />
+        <aggregate alias="User" class="modUser" local="user_id" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+
+    <object class="hsService" table="houservice_service" extends="xPDOSimpleObject">
+        <field key="calculation_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="provider" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="days_count" dbtype="int" precision="4" attributes="unsigned" phptype="integer" null="true" default="0" />
+        <field key="days_period" dbtype="int" precision="4" attributes="unsigned" phptype="integer" null="true" default="0" />
+        <field key="rate" dbtype="decimal" precision="12,3" phptype="float" null="true" default="0" />
+        <field key="rate_norm" dbtype="decimal" precision="12,3" phptype="float" null="true" default="0" />
+        <field key="cost" dbtype="decimal" precision="12,2" phptype="float" null="true" default="0" />
+        <field key="sum_rate" dbtype="decimal" precision="12,2" phptype="float" null="true" default="0" />
+        <field key="sum_subsidy" dbtype="decimal" precision="12,2" phptype="float" null="true" default="0" />
+        <field key="sum_recalc" dbtype="decimal" precision="12,2" phptype="float" null="true" default="0" />
+        <field key="sum_pay" dbtype="decimal" precision="12,2" phptype="float" null="true" default="0" />
+        <field key="sum_odn" dbtype="decimal" precision="12,2" phptype="float" null="true" default="0" />
+        <field key="rate_odn" dbtype="decimal" precision="12,3" phptype="float" null="true" default="0" />
+
+        <index alias="calculation_id" name="calculation_id" primary="false" unique="false" type="BTREE">
+            <column key="calculation_id" length="" collation="A" null="false" />
+        </index>
+
+        <aggregate alias="Calculation" class="hsCalculation" local="calculation_id" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+
+    <object class="hsReadout" table="houservice_readout" extends="xPDOSimpleObject">
+        <field key="meter_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="period" dbtype="date" phptype="date" null="true" />
+        <field key="value" dbtype="decimal" precision="12,3" phptype="float" null="true" default="0" />
+
+        <index alias="key" name="key" primary="false" unique="true" type="BTREE">
+            <column key="meter_id" length="" collation="A" null="false" />
+            <column key="period" length="" collation="A" null="false" />
+        </index>
+
+        <aggregate alias="Meter" class="hsMeter" local="meter_id" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+
+    <object class="hsMeter" table="houservice_meter" extends="xPDOSimpleObject">
+        <field key="user_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="meter_type_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="active" dbtype="tinyint" precision="1" phptype="boolean" attributes="unsigned" null="true" default="1" />
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="idn" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="sn" dbtype="text" phptype="string" null="true" default="" />
+
+        <index alias="meter_type_id" name="meter_type_id" primary="false" unique="false" type="BTREE">
+            <column key="meter_type_id" length="" collation="A" null="false" />
+        </index>
+        <index alias="user_id" name="user_id" primary="false" unique="false" type="BTREE">
+            <column key="user_id" length="" collation="A" null="false" />
+        </index>
+
+        <aggregate alias="MeterType" class="hsMeterType" local="meter_type_id" foreign="id" cardinality="one" owner="foreign" />
+        <aggregate alias="User" class="modUser" local="user_id" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+
+    <object class="hsMeterType" table="houservice_meter_type" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="unit" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+
+        <index alias="name" name="name" primary="false" unique="true" type="BTREE">
+            <column key="name" length="" collation="A" null="false" />
+        </index>
+    </object>
 
 </model>

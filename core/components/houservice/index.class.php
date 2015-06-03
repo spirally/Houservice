@@ -1,4 +1,7 @@
 <?php
+// For debug
+ini_set('display_errors', 1);
+ini_set('error_reporting', -1);
 
 /**
  * Class HouserviceMainController
@@ -12,6 +15,13 @@ abstract class HouserviceMainController extends modExtraManagerController {
 	 * @return void
 	 */
 	public function initialize() {
+		$version = $this->modx->getVersionData();
+		$modx23 = !empty($version) && version_compare($version['full_version'], '2.3.0', '>=');
+		if (!$modx23) {
+		$this->addCss(MODX_ASSETS_URL . 'components/houservice/css/mgr/font-awesome.min.css');
+		}
+		$this->addCss(MODX_ASSETS_URL . 'components/houservice/css/mgr/bootstrap.buttons.min.css');
+
 		$corePath = $this->modx->getOption('houservice_core_path', null, $this->modx->getOption('core_path') . 'components/houservice/');
 		require_once $corePath . 'model/houservice/houservice.class.php';
 
