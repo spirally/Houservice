@@ -1,14 +1,14 @@
-Houservice.window.CreateItem = function (config) {
+Houservice.window.CreateMeter = function (config) {
 	config = config || {};
 	if (!config.id) {
-		config.id = 'houservice-item-window-create';
+		config.id = 'houservice-meter-window-create';
 	}
 	Ext.applyIf(config, {
-		title: _('houservice_item_create'),
+		title: _('houservice_meter_create'),
 		width: 550,
 		autoHeight: true,
 		url: Houservice.config.connector_url,
-		action: 'mgr/item/create',
+		action: 'mgr/meter/create',
 		fields: this.getFields(config),
 		keys: [{
 			key: Ext.EventObject.ENTER, shift: true, fn: function () {
@@ -16,28 +16,28 @@ Houservice.window.CreateItem = function (config) {
 			}, scope: this
 		}]
 	});
-	Houservice.window.CreateItem.superclass.constructor.call(this, config);
+	Houservice.window.CreateMeter.superclass.constructor.call(this, config);
 };
-Ext.extend(Houservice.window.CreateItem, MODx.Window, {
+Ext.extend(Houservice.window.CreateMeter, MODx.Window, {
 
 	getFields: function (config) {
 		return [{
 			xtype: 'textfield',
-			fieldLabel: _('houservice_item_name'),
+			fieldLabel: _('houservice_meter_name'),
 			name: 'name',
 			id: config.id + '-name',
 			anchor: '99%',
 			allowBlank: false,
 		}, {
 			xtype: 'textarea',
-			fieldLabel: _('houservice_item_description'),
+			fieldLabel: _('houservice_meter_description'),
 			name: 'description',
 			id: config.id + '-description',
 			height: 150,
 			anchor: '99%'
 		}, {
 			xtype: 'xcheckbox',
-			boxLabel: _('houservice_item_active'),
+			boxLabel: _('houservice_meter_active'),
 			name: 'active',
 			id: config.id + '-active',
 			checked: true,
@@ -45,20 +45,20 @@ Ext.extend(Houservice.window.CreateItem, MODx.Window, {
 	}
 
 });
-Ext.reg('houservice-item-window-create', Houservice.window.CreateItem);
+Ext.reg('houservice-meter-window-create', Houservice.window.CreateMeter);
 
 
-Houservice.window.UpdateItem = function (config) {
+Houservice.window.UpdateMeter = function (config) {
 	config = config || {};
 	if (!config.id) {
-		config.id = 'houservice-item-window-update';
+		config.id = 'houservice-meter-window-update';
 	}
 	Ext.applyIf(config, {
-		title: _('houservice_item_update'),
+		title: _('houservice_meter_update'),
 		width: 550,
 		autoHeight: true,
 		url: Houservice.config.connector_url,
-		action: 'mgr/item/update',
+		action: 'mgr/meter/update',
 		fields: this.getFields(config),
 		keys: [{
 			key: Ext.EventObject.ENTER, shift: true, fn: function () {
@@ -66,9 +66,9 @@ Houservice.window.UpdateItem = function (config) {
 			}, scope: this
 		}]
 	});
-	Houservice.window.UpdateItem.superclass.constructor.call(this, config);
+	Houservice.window.UpdateMeter.superclass.constructor.call(this, config);
 };
-Ext.extend(Houservice.window.UpdateItem, MODx.Window, {
+Ext.extend(Houservice.window.UpdateMeter, MODx.Window, {
 
 	getFields: function (config) {
 		return [{
@@ -77,25 +77,25 @@ Ext.extend(Houservice.window.UpdateItem, MODx.Window, {
 			id: config.id + '-id',
 		}, {
 			xtype: 'textfield',
-			fieldLabel: _('houservice_item_name'),
+			fieldLabel: _('houservice_meter_name'),
 			name: 'name',
 			id: config.id + '-name',
 			anchor: '99%',
 			allowBlank: false,
 		}, {
 			xtype: 'textarea',
-			fieldLabel: _('houservice_item_description'),
+			fieldLabel: _('houservice_meter_description'),
 			name: 'description',
 			id: config.id + '-description',
 			anchor: '99%',
 			height: 150,
 		}, {
 			xtype: 'xcheckbox',
-			boxLabel: _('houservice_item_active'),
+			boxLabel: _('houservice_meter_active'),
 			name: 'active',
 			id: config.id + '-active',
 		}];
 	}
 
 });
-Ext.reg('houservice-item-window-update', Houservice.window.UpdateItem);
+Ext.reg('houservice-meter-window-update', Houservice.window.UpdateMeter);

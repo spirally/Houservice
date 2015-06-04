@@ -3,9 +3,9 @@
 /**
  * Enable an Item
  */
-class HouserviceItemEnableProcessor extends modObjectProcessor {
-	public $objectType = 'HouserviceItem';
-	public $classKey = 'HouserviceItem';
+class hsCalculationEnableProcessor extends modObjectProcessor {
+	public $objectType = 'hsCalculation';
+	public $classKey = 'hsCalculation';
 	public $languageTopics = array('houservice');
 	//public $permission = 'save';
 
@@ -20,13 +20,13 @@ class HouserviceItemEnableProcessor extends modObjectProcessor {
 
 		$ids = $this->modx->fromJSON($this->getProperty('ids'));
 		if (empty($ids)) {
-			return $this->failure($this->modx->lexicon('houservice_item_err_ns'));
+			return $this->failure($this->modx->lexicon('houservice_calculation_err_ns'));
 		}
 
 		foreach ($ids as $id) {
-			/** @var HouserviceItem $object */
+			/** @var hsCalculation $object */
 			if (!$object = $this->modx->getObject($this->classKey, $id)) {
-				return $this->failure($this->modx->lexicon('houservice_item_err_nf'));
+				return $this->failure($this->modx->lexicon('houservice_calculation_err_nf'));
 			}
 
 			$object->set('active', true);
@@ -38,4 +38,4 @@ class HouserviceItemEnableProcessor extends modObjectProcessor {
 
 }
 
-return 'HouserviceItemEnableProcessor';
+return 'hsCalculationEnableProcessor';

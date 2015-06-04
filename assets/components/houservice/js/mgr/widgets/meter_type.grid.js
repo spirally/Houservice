@@ -1,7 +1,7 @@
-Houservice.grid.Items = function (config) {
+Houservice.grid.MeterType = function (config) {
 	config = config || {};
 	if (!config.id) {
-		config.id = 'houservice-grid-items';
+		config.id = 'houservice-grid-meter_type';
 	}
 	Ext.applyIf(config, {
 		url: Houservice.config.connector_url,
@@ -10,12 +10,12 @@ Houservice.grid.Items = function (config) {
 		tbar: this.getTopBar(config),
 		sm: new Ext.grid.CheckboxSelectionModel(),
 		baseParams: {
-			action: 'mgr/item/getlist'
+			action: 'mgr/meter_type/getlist'
 		},
 		listeners: {
 			rowDblClick: function (grid, rowIndex, e) {
 				var row = grid.store.getAt(rowIndex);
-				this.updateItem(grid, e, row);
+				this.updateMeterType(grid, e, row);
 			}
 		},
 		viewConfig: {
@@ -34,7 +34,7 @@ Houservice.grid.Items = function (config) {
 		remoteSort: true,
 		autoHeight: true,
 	});
-	Houservice.grid.Items.superclass.constructor.call(this, config);
+	Houservice.grid.MeterType.superclass.constructor.call(this, config);
 
 	// Clear selection on grid refresh
 	this.store.on('load', function () {
@@ -43,7 +43,7 @@ Houservice.grid.Items = function (config) {
 		}
 	}, this);
 };
-Ext.extend(Houservice.grid.Items, MODx.grid.Grid, {
+Ext.extend(Houservice.grid.MeterType, MODx.grid.Grid, {
 	windows: {},
 
 	getMenu: function (grid, rowIndex) {
@@ -52,12 +52,12 @@ Ext.extend(Houservice.grid.Items, MODx.grid.Grid, {
 		var row = grid.getStore().getAt(rowIndex);
 		var menu = Houservice.utils.getMenu(row.data['actions'], this, ids);
 
-		this.addContextMenuItem(menu);
+		this.addContextMenuMeterType(menu);
 	},
 
-	createItem: function (btn, e) {
+	createMeterType: function (btn, e) {
 		var w = MODx.load({
-			xtype: 'houservice-item-window-create',
+			xtype: 'houservice-meter_type-window-create',
 			id: Ext.id(),
 			listeners: {
 				success: {
@@ -72,7 +72,7 @@ Ext.extend(Houservice.grid.Items, MODx.grid.Grid, {
 		w.show(e.target);
 	},
 
-	updateItem: function (btn, e, row) {
+	updateMeterType: function (btn, e, row) {
 		if (typeof(row) != 'undefined') {
 			this.menu.record = row.data;
 		}
@@ -84,14 +84,14 @@ Ext.extend(Houservice.grid.Items, MODx.grid.Grid, {
 		MODx.Ajax.request({
 			url: this.config.url,
 			params: {
-				action: 'mgr/item/get',
+				action: 'mgr/meter_type/get',
 				id: id
 			},
 			listeners: {
 				success: {
 					fn: function (r) {
 						var w = MODx.load({
-							xtype: 'houservice-item-window-update',
+							xtype: 'houservice-meter_type-window-update',
 							id: Ext.id(),
 							record: r,
 							listeners: {
@@ -111,21 +111,21 @@ Ext.extend(Houservice.grid.Items, MODx.grid.Grid, {
 		});
 	},
 
-	removeItem: function (act, btn, e) {
+	removeMeterType: function (act, btn, e) {
 		var ids = this._getSelectedIds();
 		if (!ids.length) {
 			return false;
 		}
 		MODx.msg.confirm({
 			title: ids.length > 1
-				? _('houservice_items_remove')
-				: _('houservice_item_remove'),
+				? _('houservice_meter_types_remove')
+				: _('houservice_meter_type_remove'),
 			text: ids.length > 1
-				? _('houservice_items_remove_confirm')
-				: _('houservice_item_remove_confirm'),
+				? _('houservice_meter_types_remove_confirm')
+				: _('houservice_meter_type_remove_confirm'),
 			url: this.config.url,
 			params: {
-				action: 'mgr/item/remove',
+				action: 'mgr/meter_type/remove',
 				ids: Ext.util.JSON.encode(ids),
 			},
 			listeners: {
@@ -139,7 +139,7 @@ Ext.extend(Houservice.grid.Items, MODx.grid.Grid, {
 		return true;
 	},
 
-	disableItem: function (act, btn, e) {
+	disableMeterType: function (act, btn, e) {
 		var ids = this._getSelectedIds();
 		if (!ids.length) {
 			return false;
@@ -147,7 +147,7 @@ Ext.extend(Houservice.grid.Items, MODx.grid.Grid, {
 		MODx.Ajax.request({
 			url: this.config.url,
 			params: {
-				action: 'mgr/item/disable',
+				action: 'mgr/meter_type/disable',
 				ids: Ext.util.JSON.encode(ids),
 			},
 			listeners: {
@@ -160,7 +160,7 @@ Ext.extend(Houservice.grid.Items, MODx.grid.Grid, {
 		})
 	},
 
-	enableItem: function (act, btn, e) {
+	enableMeterType: function (act, btn, e) {
 		var ids = this._getSelectedIds();
 		if (!ids.length) {
 			return false;
@@ -168,7 +168,7 @@ Ext.extend(Houservice.grid.Items, MODx.grid.Grid, {
 		MODx.Ajax.request({
 			url: this.config.url,
 			params: {
-				action: 'mgr/item/enable',
+				action: 'mgr/meter_type/enable',
 				ids: Ext.util.JSON.encode(ids),
 			},
 			listeners: {
@@ -182,27 +182,27 @@ Ext.extend(Houservice.grid.Items, MODx.grid.Grid, {
 	},
 
 	getFields: function (config) {
-		return ['id', 'name', 'description', 'active', 'actions'];
+		return ['id', 'name', 'unit', 'active', 'actions'];
 	},
 
 	getColumns: function (config) {
 		return [{
-			header: _('houservice_item_id'),
+			header: _('houservice_meter_type_id'),
 			dataIndex: 'id',
 			sortable: true,
 			width: 70
 		}, {
-			header: _('houservice_item_name'),
+			header: _('houservice_meter_type_name'),
 			dataIndex: 'name',
 			sortable: true,
 			width: 200,
 		}, {
-			header: _('houservice_item_description'),
-			dataIndex: 'description',
+			header: _('houservice_meter_type_unit'),
+			dataIndex: 'unit',
 			sortable: false,
 			width: 250,
 		}, {
-			header: _('houservice_item_active'),
+			header: _('houservice_meter_type_active'),
 			dataIndex: 'active',
 			renderer: Houservice.utils.renderBoolean,
 			sortable: true,
@@ -219,8 +219,8 @@ Ext.extend(Houservice.grid.Items, MODx.grid.Grid, {
 
 	getTopBar: function (config) {
 		return [{
-			text: '<i class="icon icon-plus"></i>&nbsp;' + _('houservice_item_create'),
-			handler: this.createItem,
+			text: '<i class="icon icon-plus"></i>&nbsp;' + _('houservice_meter_type_create'),
+			handler: this.createMeterType,
 			scope: this
 		}, '->', {
 			xtype: 'textfield',
@@ -293,4 +293,4 @@ Ext.extend(Houservice.grid.Items, MODx.grid.Grid, {
 		this.refresh();
 	}
 });
-Ext.reg('houservice-grid-items', Houservice.grid.Items);
+Ext.reg('houservice-grid-meter_type', Houservice.grid.MeterType);

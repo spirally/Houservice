@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Remove an Items
+ * Enable an Item
  */
-class HouserviceItemRemoveProcessor extends modObjectProcessor {
-	public $objectType = 'HouserviceItem';
-	public $classKey = 'HouserviceItem';
+class hsMeterEnableProcessor extends modObjectProcessor {
+	public $objectType = 'hsMeter';
+	public $classKey = 'hsMeter';
 	public $languageTopics = array('houservice');
-	//public $permission = 'remove';
+	//public $permission = 'save';
 
 
 	/**
@@ -20,16 +20,17 @@ class HouserviceItemRemoveProcessor extends modObjectProcessor {
 
 		$ids = $this->modx->fromJSON($this->getProperty('ids'));
 		if (empty($ids)) {
-			return $this->failure($this->modx->lexicon('houservice_item_err_ns'));
+			return $this->failure($this->modx->lexicon('houservice_meter_err_ns'));
 		}
 
 		foreach ($ids as $id) {
-			/** @var HouserviceItem $object */
+			/** @var hsMeter $object */
 			if (!$object = $this->modx->getObject($this->classKey, $id)) {
-				return $this->failure($this->modx->lexicon('houservice_item_err_nf'));
+				return $this->failure($this->modx->lexicon('houservice_meter_err_nf'));
 			}
 
-			$object->remove();
+			$object->set('active', true);
+			$object->save();
 		}
 
 		return $this->success();
@@ -37,4 +38,4 @@ class HouserviceItemRemoveProcessor extends modObjectProcessor {
 
 }
 
-return 'HouserviceItemRemoveProcessor';
+return 'hsMeterEnableProcessor';

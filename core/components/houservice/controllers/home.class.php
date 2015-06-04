@@ -31,8 +31,12 @@ class HouserviceHomeManagerController extends HouserviceMainController {
 		$this->addCss($this->Houservice->config['cssUrl'] . 'mgr/main.css');
 		$this->addCss($this->Houservice->config['cssUrl'] . 'mgr/bootstrap.buttons.css');
 		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/misc/utils.js');
-		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/items.grid.js');
-		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/items.windows.js');
+		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/meter.grid.js');
+		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/meter.windows.js');
+		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/meter_type.grid.js');
+		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/meter_type.windows.js');
+		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/calculation.grid.js');
+		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/calculation.windows.js');
 		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/readout.grid.js');
 		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/readout.windows.js');
 		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/home.panel.js');

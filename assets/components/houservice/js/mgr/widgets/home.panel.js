@@ -19,42 +19,55 @@ Houservice.panel.Home = function (config) {
 			defaults: {border: false, autoHeight: true},
 			border: true,
 			hideMode: 'offsets',
-			items: [{
-				title: _('houservice_readout'),
-				layout: 'anchor',
-				items: [{
-					html: _('houservice_readout_msg'),
-					cls: 'panel-desc',
-				}, {
-					xtype: 'houservice-grid-readout',
-					cls: 'main-wrapper',
-                    //preventRender: true,
-				}]
-			}
-            /*,{
-                title: _('houservice_meter'),
-                layout: 'anchor',
-                items: [{
-                    html: _('houservice_meter_msg'),
-                    cls: 'panel-desc',
-                }, {
-                    xtype: 'houservice-grid-meter',
-                    cls: 'main-wrapper',
-                    //preventRender: true,
-                }]
-            }
-            ,{
-                title: _('houservice_meter_type'),
-                layout: 'anchor',
-                items: [{
-                    html: _('houservice_meter_type_msg'),
-                    cls: 'panel-desc',
-                }, {
-                    xtype: 'houservice-grid-meter_type',
-                    cls: 'main-wrapper',
-                    //preventRender: true,
-                }]
-            }*/
+			items: [
+                {
+                    title: _('houservice_readout'),
+                    layout: 'anchor',
+                    items: [{
+                        html: _('houservice_readout_msg'),
+                        cls: 'panel-desc',
+                    }, {
+                        xtype: 'houservice-grid-readout',
+                        cls: 'main-wrapper',
+                        //preventRender: true,
+                    }]
+                }
+                ,{
+                    title: _('houservice_calculation'),
+                    layout: 'anchor',
+                    items: [{
+                        html: _('houservice_calculation_msg'),
+                        cls: 'panel-desc',
+                    }, {
+                        xtype: 'houservice-grid-calculation',
+                        cls: 'main-wrapper',
+                        //preventRender: true,
+                    }]
+                }
+                ,{
+                    title: _('houservice_meter'),
+                    layout: 'anchor',
+                    items: [{
+                        html: _('houservice_meter_msg'),
+                        cls: 'panel-desc',
+                    }, {
+                        xtype: 'houservice-grid-meter',
+                        cls: 'main-wrapper',
+                        //preventRender: true,
+                    }]
+                }
+                ,{
+                    title: _('houservice_meter_type'),
+                    layout: 'anchor',
+                    items: [{
+                        html: _('houservice_meter_type_msg'),
+                        cls: 'panel-desc',
+                    }, {
+                        xtype: 'houservice-grid-meter_type',
+                        cls: 'main-wrapper',
+                        //preventRender: true,
+                    }]
+                }
             ]
 		}]
 	});

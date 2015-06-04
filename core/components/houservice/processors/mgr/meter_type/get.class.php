@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Get an Item
+ * Get an MeterType
  */
-class HouserviceItemGetProcessor extends modObjectGetProcessor {
-	public $objectType = 'HouserviceItem';
-	public $classKey = 'HouserviceItem';
+class hsMeterTypeGetProcessor extends modObjectGetProcessor {
+	public $objectType = 'hsMeterType';
+	public $classKey = 'hsMeterType';
 	public $languageTopics = array('houservice:default');
 	//public $permission = 'view';
 
@@ -26,4 +26,4 @@ class HouserviceItemGetProcessor extends modObjectGetProcessor {
 
 }
 
-return 'HouserviceItemGetProcessor';
+return 'hsMeterTypeGetProcessor';

@@ -3,9 +3,9 @@
 /**
  * Get a list of Items
  */
-class HouserviceItemGetListProcessor extends modObjectGetListProcessor {
-	public $objectType = 'HouserviceItem';
-	public $classKey = 'HouserviceItem';
+class hsMeterGetListProcessor extends modObjectGetListProcessor {
+	public $objectType = 'hsMeter';
+	public $classKey = 'hsMeter';
 	public $defaultSortField = 'id';
 	public $defaultSortDirection = 'DESC';
 	//public $permission = 'list';
@@ -57,8 +57,8 @@ class HouserviceItemGetListProcessor extends modObjectGetListProcessor {
 		$array['actions'][] = array(
 			'cls' => '',
 			'icon' => 'icon icon-edit',
-			'title' => $this->modx->lexicon('houservice_item_update'),
-			//'multiple' => $this->modx->lexicon('houservice_items_update'),
+			'title' => $this->modx->lexicon('houservice_meter_update'),
+			//'multiple' => $this->modx->lexicon('houservice_meters_update'),
 			'action' => 'updateItem',
 			'button' => true,
 			'menu' => true,
@@ -68,8 +68,8 @@ class HouserviceItemGetListProcessor extends modObjectGetListProcessor {
 			$array['actions'][] = array(
 				'cls' => '',
 				'icon' => 'icon icon-power-off action-green',
-				'title' => $this->modx->lexicon('houservice_item_enable'),
-				'multiple' => $this->modx->lexicon('houservice_items_enable'),
+				'title' => $this->modx->lexicon('houservice_meter_enable'),
+				'multiple' => $this->modx->lexicon('houservice_meters_enable'),
 				'action' => 'enableItem',
 				'button' => true,
 				'menu' => true,
@@ -79,8 +79,8 @@ class HouserviceItemGetListProcessor extends modObjectGetListProcessor {
 			$array['actions'][] = array(
 				'cls' => '',
 				'icon' => 'icon icon-power-off action-gray',
-				'title' => $this->modx->lexicon('houservice_item_disable'),
-				'multiple' => $this->modx->lexicon('houservice_items_disable'),
+				'title' => $this->modx->lexicon('houservice_meter_disable'),
+				'multiple' => $this->modx->lexicon('houservice_meters_disable'),
 				'action' => 'disableItem',
 				'button' => true,
 				'menu' => true,
@@ -91,8 +91,8 @@ class HouserviceItemGetListProcessor extends modObjectGetListProcessor {
 		$array['actions'][] = array(
 			'cls' => '',
 			'icon' => 'icon icon-trash-o action-red',
-			'title' => $this->modx->lexicon('houservice_item_remove'),
-			'multiple' => $this->modx->lexicon('houservice_items_remove'),
+			'title' => $this->modx->lexicon('houservice_meter_remove'),
+			'multiple' => $this->modx->lexicon('houservice_meters_remove'),
 			'action' => 'removeItem',
 			'button' => true,
 			'menu' => true,
@@ -103,4 +103,4 @@ class HouserviceItemGetListProcessor extends modObjectGetListProcessor {
 
 }
 
-return 'HouserviceItemGetListProcessor';
+return 'hsMeterGetListProcessor';
