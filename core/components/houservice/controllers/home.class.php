@@ -33,6 +33,8 @@ class HouserviceHomeManagerController extends HouserviceMainController {
 		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/misc/utils.js');
 		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/items.grid.js');
 		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/items.windows.js');
+		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/readout.grid.js');
+		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/readout.windows.js');
 		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/home.panel.js');
 		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/sections/home.js');
 		$this->addHtml('<script type="text/javascript">

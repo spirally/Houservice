@@ -20,16 +20,42 @@ Houservice.panel.Home = function (config) {
 			border: true,
 			hideMode: 'offsets',
 			items: [{
-				title: _('houservice_items'),
+				title: _('houservice_readout'),
 				layout: 'anchor',
 				items: [{
-					html: _('houservice_intro_msg'),
+					html: _('houservice_readout_msg'),
 					cls: 'panel-desc',
 				}, {
-					xtype: 'houservice-grid-items',
+					xtype: 'houservice-grid-readout',
 					cls: 'main-wrapper',
+                    //preventRender: true,
 				}]
-			}]
+			}
+            /*,{
+                title: _('houservice_meter'),
+                layout: 'anchor',
+                items: [{
+                    html: _('houservice_meter_msg'),
+                    cls: 'panel-desc',
+                }, {
+                    xtype: 'houservice-grid-meter',
+                    cls: 'main-wrapper',
+                    //preventRender: true,
+                }]
+            }
+            ,{
+                title: _('houservice_meter_type'),
+                layout: 'anchor',
+                items: [{
+                    html: _('houservice_meter_type_msg'),
+                    cls: 'panel-desc',
+                }, {
+                    xtype: 'houservice-grid-meter_type',
+                    cls: 'main-wrapper',
+                    //preventRender: true,
+                }]
+            }*/
+            ]
 		}]
 	});
 	Houservice.panel.Home.superclass.constructor.call(this, config);
