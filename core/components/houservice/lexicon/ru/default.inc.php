@@ -7,8 +7,11 @@ $_lang['houservice_intro_msg'] = 'Вы можете выделять сразу 
 
 $_lang['houservice_meter'] = 'Счетчики';
 $_lang['houservice_meter_id'] = 'Id';
-$_lang['houservice_meter_name'] = 'Название';
-$_lang['houservice_meter_description'] = 'Описание';
+$_lang['houservice_meter_name'] = 'Наименование';
+$_lang['houservice_meter_user_id'] = 'Клиент';
+$_lang['houservice_meter_meter_type_id'] = 'Тип счетчика';
+$_lang['houservice_meter_idn'] = 'Код';
+$_lang['houservice_meter_sn'] = 'Серийный номер';
 $_lang['houservice_meter_active'] = 'Активно';
 
 $_lang['houservice_meter_create'] = 'Создать Счетчик';

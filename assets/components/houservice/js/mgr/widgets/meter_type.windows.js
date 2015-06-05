@@ -27,20 +27,13 @@ Ext.extend(Houservice.window.CreateMeterType, MODx.Window, {
 			name: 'name',
 			id: config.id + '-name',
 			anchor: '99%',
-			allowBlank: false,
+			allowBlank: false
 		}, {
-			xtype: 'textarea',
+			xtype: 'textfield',
 			fieldLabel: _('houservice_meter_type_unit'),
 			name: 'unit',
 			id: config.id + '-unit',
-			height: 150,
 			anchor: '99%'
-		}, {
-			xtype: 'xcheckbox',
-			boxLabel: _('houservice_meter_type_active'),
-			name: 'active',
-			id: config.id + '-active',
-			checked: true,
 		}];
 	}
 
@@ -74,26 +67,20 @@ Ext.extend(Houservice.window.UpdateMeterType, MODx.Window, {
 		return [{
 			xtype: 'hidden',
 			name: 'id',
-			id: config.id + '-id',
+			id: config.id + '-id'
 		}, {
 			xtype: 'textfield',
 			fieldLabel: _('houservice_meter_type_name'),
 			name: 'name',
 			id: config.id + '-name',
 			anchor: '99%',
-			allowBlank: false,
+			allowBlank: false
 		}, {
-			xtype: 'textarea',
+			xtype: 'textfield',
 			fieldLabel: _('houservice_meter_type_unit'),
 			name: 'unit',
 			id: config.id + '-unit',
-			anchor: '99%',
-			height: 150,
-		}, {
-			xtype: 'xcheckbox',
-			boxLabel: _('houservice_meter_type_active'),
-			name: 'active',
-			id: config.id + '-active',
+			anchor: '99%'
 		}];
 	}
 

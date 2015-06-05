@@ -31,6 +31,7 @@ class HouserviceHomeManagerController extends HouserviceMainController {
 		$this->addCss($this->Houservice->config['cssUrl'] . 'mgr/main.css');
 		$this->addCss($this->Houservice->config['cssUrl'] . 'mgr/bootstrap.buttons.css');
 		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/misc/utils.js');
+		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/misc/houservice.combo.js');
 		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/meter.grid.js');
 		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/meter.windows.js');
 		$this->addJavascript($this->Houservice->config['jsUrl'] . 'mgr/widgets/meter_type.grid.js');

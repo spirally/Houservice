@@ -21,27 +21,75 @@ Houservice.window.CreateMeter = function (config) {
 Ext.extend(Houservice.window.CreateMeter, MODx.Window, {
 
 	getFields: function (config) {
-		return [{
-			xtype: 'textfield',
-			fieldLabel: _('houservice_meter_name'),
-			name: 'name',
-			id: config.id + '-name',
-			anchor: '99%',
-			allowBlank: false,
-		}, {
-			xtype: 'textarea',
-			fieldLabel: _('houservice_meter_description'),
-			name: 'description',
-			id: config.id + '-description',
-			height: 150,
-			anchor: '99%'
-		}, {
-			xtype: 'xcheckbox',
-			boxLabel: _('houservice_meter_active'),
-			name: 'active',
-			id: config.id + '-active',
-			checked: true,
-		}];
+		return [
+            {
+                xtype: 'houservice-combo-user',
+                fieldLabel: _('houservice_meter_user_id'),
+                name: 'user_id',
+                id: config.id + '-user_id',
+                allowBlank: false,
+                anchor: '99%'
+            }
+            ,{
+                layout:'column'
+                ,border: false
+                ,anchor: '100%'
+                ,items: [
+                    {
+                        columnWidth: .5
+                        ,layout: 'form'
+                        ,defaults: { msgTarget: 'under' }
+                        ,border:false
+                        ,items: [
+                            {
+                                xtype: 'textfield',
+                                fieldLabel: _('houservice_meter_name'),
+                                name: 'name',
+                                id: config.id + '-name',
+                                anchor: '99%'
+                            }
+                            ,{
+                                xtype: 'textfield',
+                                fieldLabel: _('houservice_meter_idn'),
+                                name: 'idn',
+                                id: config.id + '-idn',
+                                anchor: '99%'
+                            }
+                        ]
+                    }
+                    ,{
+                        columnWidth: .5
+                        ,layout: 'form'
+                        ,defaults: { msgTarget: 'under' }
+                        ,border:false
+                        ,items: [
+                            {
+                                xtype: 'houservice-combo-meter_type',
+                                fieldLabel: _('houservice_meter_meter_type_id'),
+                                name: 'meter_type_id',
+                                id: config.id + '-meter_type_id',
+                                allowBlank: false,
+                                anchor: '99%'
+                            }
+                            ,{
+                                xtype: 'textfield',
+                                fieldLabel: _('houservice_meter_sn'),
+                                name: 'sn',
+                                id: config.id + '-sn',
+                                anchor: '99%'
+                            }
+                        ]
+                    }
+                ]
+            }
+            ,{
+                xtype: 'xcheckbox',
+                boxLabel: _('houservice_meter_active'),
+                name: 'active',
+                id: config.id + '-active',
+                checked: true
+		    }
+        ];
 	}
 
 });
@@ -71,30 +119,75 @@ Houservice.window.UpdateMeter = function (config) {
 Ext.extend(Houservice.window.UpdateMeter, MODx.Window, {
 
 	getFields: function (config) {
-		return [{
-			xtype: 'hidden',
-			name: 'id',
-			id: config.id + '-id',
-		}, {
-			xtype: 'textfield',
-			fieldLabel: _('houservice_meter_name'),
-			name: 'name',
-			id: config.id + '-name',
-			anchor: '99%',
-			allowBlank: false,
-		}, {
-			xtype: 'textarea',
-			fieldLabel: _('houservice_meter_description'),
-			name: 'description',
-			id: config.id + '-description',
-			anchor: '99%',
-			height: 150,
-		}, {
-			xtype: 'xcheckbox',
-			boxLabel: _('houservice_meter_active'),
-			name: 'active',
-			id: config.id + '-active',
-		}];
+		return [
+            {
+                xtype: 'houservice-combo-user',
+                fieldLabel: _('houservice_meter_user_id'),
+                name: 'user_id',
+                id: config.id + '-user_id',
+                allowBlank: false,
+                anchor: '99%'
+            }
+            ,{
+                layout:'column'
+                ,border: false
+                ,anchor: '100%'
+                ,items: [
+                    {
+                        columnWidth: .5
+                        ,layout: 'form'
+                        ,defaults: { msgTarget: 'under' }
+                        ,border:false
+                        ,items: [
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: _('houservice_meter_name'),
+                            name: 'name',
+                            id: config.id + '-name',
+                            anchor: '99%'
+                        }
+                        ,{
+                            xtype: 'textfield',
+                            fieldLabel: _('houservice_meter_idn'),
+                            name: 'idn',
+                            id: config.id + '-idn',
+                            anchor: '99%'
+                        }
+                    ]
+                    }
+                    ,{
+                        columnWidth: .5
+                        ,layout: 'form'
+                        ,defaults: { msgTarget: 'under' }
+                        ,border:false
+                        ,items: [
+                            {
+                                xtype: 'houservice-combo-meter_type',
+                                fieldLabel: _('houservice_meter_meter_type_id'),
+                                name: 'meter_type_id',
+                                id: config.id + '-meter_type_id',
+                                allowBlank: false,
+                                anchor: '99%'
+                            }
+                            ,{
+                                xtype: 'textfield',
+                                fieldLabel: _('houservice_meter_sn'),
+                                name: 'sn',
+                                id: config.id + '-sn',
+                                anchor: '99%'
+                            }
+                        ]
+                    }
+                ]
+            }
+            ,{
+                xtype: 'xcheckbox',
+                boxLabel: _('houservice_meter_active'),
+                name: 'active',
+                id: config.id + '-active',
+                checked: true
+            }
+        ];
 	}
 
 });

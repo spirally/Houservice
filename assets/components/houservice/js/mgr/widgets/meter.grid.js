@@ -32,7 +32,7 @@ Houservice.grid.Meter = function (config) {
 		},
 		paging: true,
 		remoteSort: true,
-		autoHeight: true,
+		autoHeight: true
 	});
 	Houservice.grid.Meter.superclass.constructor.call(this, config);
 
@@ -126,7 +126,7 @@ Ext.extend(Houservice.grid.Meter, MODx.grid.Grid, {
 			url: this.config.url,
 			params: {
 				action: 'mgr/meter/remove',
-				ids: Ext.util.JSON.encode(ids),
+				ids: Ext.util.JSON.encode(ids)
 			},
 			listeners: {
 				success: {
@@ -148,7 +148,7 @@ Ext.extend(Houservice.grid.Meter, MODx.grid.Grid, {
 			url: this.config.url,
 			params: {
 				action: 'mgr/meter/disable',
-				ids: Ext.util.JSON.encode(ids),
+				ids: Ext.util.JSON.encode(ids)
 			},
 			listeners: {
 				success: {
@@ -169,7 +169,7 @@ Ext.extend(Houservice.grid.Meter, MODx.grid.Grid, {
 			url: this.config.url,
 			params: {
 				action: 'mgr/meter/enable',
-				ids: Ext.util.JSON.encode(ids),
+				ids: Ext.util.JSON.encode(ids)
 			},
 			listeners: {
 				success: {
@@ -182,7 +182,7 @@ Ext.extend(Houservice.grid.Meter, MODx.grid.Grid, {
 	},
 
 	getFields: function (config) {
-		return ['id', 'name', 'description', 'active', 'actions'];
+		return ['id', 'name', 'user_id', 'meter_type_id', 'idn', 'sn', 'active', 'actions'];
 	},
 
 	getColumns: function (config) {
@@ -190,29 +190,46 @@ Ext.extend(Houservice.grid.Meter, MODx.grid.Grid, {
 			header: _('houservice_meter_id'),
 			dataIndex: 'id',
 			sortable: true,
-			width: 70
+			width: 50
+//		}, {
+//			header: _('houservice_meter_name'),
+//			dataIndex: 'name',
+//			sortable: true,
+//			width: 100,
 		}, {
-			header: _('houservice_meter_name'),
-			dataIndex: 'name',
+			header: _('houservice_meter_user_id'),
+			dataIndex: 'user_id',
 			sortable: true,
-			width: 200,
+            renderer: Houservice.utils.renderUserLink,
+			width: 100
 		}, {
-			header: _('houservice_meter_description'),
-			dataIndex: 'description',
-			sortable: false,
-			width: 250,
+			header: _('houservice_meter_meter_type_id'),
+			dataIndex: 'meter_type_id',
+			sortable: true,
+            //renderer: Houservice.utils.renderMeterType,
+			width: 100
+		}, {
+			header: _('houservice_meter_idn'),
+			dataIndex: 'idn',
+			sortable: true,
+			width: 50
+		}, {
+			header: _('houservice_meter_sn'),
+			dataIndex: 'sn',
+			sortable: true,
+			width: 50
 		}, {
 			header: _('houservice_meter_active'),
 			dataIndex: 'active',
 			renderer: Houservice.utils.renderBoolean,
 			sortable: true,
-			width: 100,
+			width: 50
 		}, {
 			header: _('houservice_grid_actions'),
 			dataIndex: 'actions',
 			renderer: Houservice.utils.renderActions,
 			sortable: false,
-			width: 100,
+			width: 50,
 			id: 'actions'
 		}];
 	},

@@ -23,16 +23,11 @@ Houservice.grid.MeterType = function (config) {
 			enableRowBody: true,
 			autoFill: true,
 			showPreview: true,
-			scrollOffset: 0,
-			getRowClass: function (rec, ri, p) {
-				return !rec.data.active
-					? 'houservice-grid-row-disabled'
-					: '';
-			}
+			scrollOffset: 0
 		},
 		paging: true,
 		remoteSort: true,
-		autoHeight: true,
+		autoHeight: true
 	});
 	Houservice.grid.MeterType.superclass.constructor.call(this, config);
 
@@ -68,7 +63,6 @@ Ext.extend(Houservice.grid.MeterType, MODx.grid.Grid, {
 			}
 		});
 		w.reset();
-		w.setValues({active: true});
 		w.show(e.target);
 	},
 
@@ -126,7 +120,7 @@ Ext.extend(Houservice.grid.MeterType, MODx.grid.Grid, {
 			url: this.config.url,
 			params: {
 				action: 'mgr/meter_type/remove',
-				ids: Ext.util.JSON.encode(ids),
+				ids: Ext.util.JSON.encode(ids)
 			},
 			listeners: {
 				success: {
@@ -148,7 +142,7 @@ Ext.extend(Houservice.grid.MeterType, MODx.grid.Grid, {
 			url: this.config.url,
 			params: {
 				action: 'mgr/meter_type/disable',
-				ids: Ext.util.JSON.encode(ids),
+				ids: Ext.util.JSON.encode(ids)
 			},
 			listeners: {
 				success: {
@@ -169,7 +163,7 @@ Ext.extend(Houservice.grid.MeterType, MODx.grid.Grid, {
 			url: this.config.url,
 			params: {
 				action: 'mgr/meter_type/enable',
-				ids: Ext.util.JSON.encode(ids),
+				ids: Ext.util.JSON.encode(ids)
 			},
 			listeners: {
 				success: {
@@ -182,7 +176,7 @@ Ext.extend(Houservice.grid.MeterType, MODx.grid.Grid, {
 	},
 
 	getFields: function (config) {
-		return ['id', 'name', 'unit', 'active', 'actions'];
+		return ['id', 'name', 'unit', 'actions'];
 	},
 
 	getColumns: function (config) {
@@ -195,18 +189,12 @@ Ext.extend(Houservice.grid.MeterType, MODx.grid.Grid, {
 			header: _('houservice_meter_type_name'),
 			dataIndex: 'name',
 			sortable: true,
-			width: 200,
+			width: 200
 		}, {
 			header: _('houservice_meter_type_unit'),
 			dataIndex: 'unit',
 			sortable: false,
-			width: 250,
-		}, {
-			header: _('houservice_meter_type_active'),
-			dataIndex: 'active',
-			renderer: Houservice.utils.renderBoolean,
-			sortable: true,
-			width: 100,
+			width: 250
 		}, {
 			header: _('houservice_grid_actions'),
 			dataIndex: 'actions',

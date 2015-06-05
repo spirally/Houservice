@@ -44,13 +44,30 @@ Houservice.utils.getMenu = function (actions, grid, selected) {
 			text: String.format(
 				'<span class="{0}"><i class="x-menu-item-icon {1}"></i>{2}</span>',
 				cls, icon, title
-			),
+			)
 		});
 	}
 
 	return menu;
 };
 
+Houservice.utils.renderUserLink = function(val,cell,row) {
+    if (!val) {return '';}
+    var action = MODx.action ? MODx.action['security/user/update'] : 'security/user/update';
+    var url = 'index.php?a='+action+'&id='+row.data['user_id'];
+
+    return '<a href="' + url + '" target="_blank">' + val + '</a>'
+};
+
+Houservice.utils.renderMeterType = function(val,cell,row) {
+    if (!val) {return '';}
+    else if (!row.data['meter_type_id']) {return val;}
+
+    var action = MODx.action ? MODx.action['resource/update'] : 'resource/update';
+    var url = 'index.php?a='+action+'&id='+row.data['product_id'];
+
+    return '<a href="' + url + '" target="_blank" class="ms2-link">' + val + '</a>'
+};
 
 Houservice.utils.renderActions = function (value, props, row) {
 	var res = [];
